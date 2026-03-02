@@ -4,85 +4,407 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Body & Brain by Myriam</title>
+  <meta name="description" content="Vinyasa yoga flows informed by clinical neuroscience. Free videos + paid live Zoom sessions." />
+  <meta name="theme-color" content="#FBF7F2" />
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    html { scroll-behavior: smooth; }
+
     :root{
       --bg: #FBF7F2;
       --ink: #0F172A;
       --muted: #4B5563;
       --border: rgba(15, 23, 42, 0.08);
       --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+
       --babyBlue: #DCEBFF;
       --babyPink: #F7D7E6;
       --babyPeach: #FFE6D3;
+
+      --accent: #7AA7FF;
     }
+
     body{ background: var(--bg); color: var(--ink); }
     .ratio { position: relative; width: 100%; padding-top: 56.25%; }
-    .ratio > iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .ratio > iframe, .ratio > img { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .blob{ filter: blur(44px); opacity: .70; }
+    .focus-ring:focus{ outline: none; box-shadow: 0 0 0 4px rgba(122,167,255,.22); }
+    h1,h2,h3{ letter-spacing: -0.02em; }
   </style>
 </head>
 
 <body>
-
-<!-- HERO SECTION -->
-<section class="mx-auto max-w-6xl px-4 pt-16 pb-16">
-  <div class="grid md:grid-cols-2 gap-12 items-center">
-
-    <!-- LEFT TEXT -->
-    <div>
-      <h1 id="brandNameTop" class="text-5xl font-semibold leading-tight">
-        Body & Brain by Myriam
-      </h1>
-
-      <p id="heroHeadline" class="mt-6 text-xl font-medium">
-        Simple, effective vinyasa — grounded in neuroscience.
-      </p>
-
-      <p id="heroSub" class="mt-4 text-base text-gray-600 max-w-lg">
-        Practice at home with free YouTube flows, follow on Instagram,
-        and book paid live Zoom classes.
-      </p>
-    </div>
-
-    <!-- RIGHT PROFILE IMAGE (LARGE) -->
-    <div class="rounded-3xl overflow-hidden border bg-white"
-         style="border-color: var(--border); box-shadow: var(--shadow);">
-
-      <img id="brandPhoto"
-           class="w-full h-auto object-cover"
-           alt="Profile photo"
-           loading="lazy" />
-
-    </div>
-
+  <!-- Decorative background -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="blob absolute -top-24 -left-24 h-96 w-96 rounded-full" style="background: var(--babyBlue);"></div>
+    <div class="blob absolute top-20 -right-24 h-[28rem] w-[28rem] rounded-full" style="background: var(--babyPink);"></div>
+    <div class="blob absolute bottom-0 left-1/3 h-96 w-96 rounded-full" style="background: var(--babyPeach);"></div>
   </div>
-</section>
 
-<script>
-async function loadContent(){
-  const res = await fetch('./content.json', { cache: 'no-store' });
-  return await res.json();
-}
+  <!-- Top bar -->
+  <header class="sticky top-0 z-50 border-b" style="border-color: var(--border); background: rgba(251,247,242,.86); backdrop-filter: blur(10px);">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <a href="#top" id="brandNameTop" class="font-semibold tracking-tight">Body &amp; Brain by Myriam</a>
 
-(async () => {
-  const content = await loadContent();
-  const brand = content.brand || {};
-  const copy = content.copy || {};
+      <nav class="hidden gap-6 text-sm md:flex" style="color: var(--muted);">
+        <a class="hover:text-slate-900" href="#videos">Videos</a>
+        <a class="hover:text-slate-900" href="#instagram">Instagram</a>
+        <a class="hover:text-slate-900" href="#live">Live Zoom</a>
+        <a class="hover:text-slate-900" href="#about">About</a>
+        <a class="hover:text-slate-900" href="#contact">Contact</a>
+      </nav>
 
-  // Text
-  document.getElementById('brandNameTop').textContent = brand.name;
-  document.getElementById('heroHeadline').textContent = copy.heroHeadline;
-  document.getElementById('heroSub').textContent = copy.heroSub;
+      <div class="flex items-center gap-2">
+        <a id="youtubeTop" class="rounded-full border px-3 py-1.5 text-sm hover:bg-white focus-ring" style="border-color: var(--border);" target="_blank" rel="noreferrer" href="#">YouTube</a>
+        <a id="instagramTop" class="rounded-full px-3 py-1.5 text-sm font-medium hover:opacity-90 focus-ring" style="background: var(--ink); color: white;" target="_blank" rel="noreferrer" href="#">Instagram</a>
+      </div>
+    </div>
+  </header>
 
-  // Large profile image
-  const photoEl = document.getElementById('brandPhoto');
-  if (brand.photo) {
-    photoEl.src = brand.photo;
-  }
-})();
-</script>
+  <main id="top">
+    <!-- Hero -->
+    <section class="mx-auto max-w-6xl px-4 pt-14 pb-10">
+      <div class="grid gap-10 md:grid-cols-2 md:items-start">
+        <!-- Left -->
+        <div>
+          <p class="inline-flex items-center gap-2 rounded-full border bg-white/80 px-3 py-1 text-xs" style="border-color: var(--border); color: var(--muted);">
+            <span class="h-2 w-2 rounded-full" style="background: var(--accent);"></span>
+            <span id="heroPill">Vinyasa Yoga • Neuroscience • Global Online • In-person classes in Zürich • All classes taught in English</span>
+          </p>
+          <h1 id="heroHeadline" class="mt-4 text-4xl font-semibold leading-tight md:text-5xl">Simple, effective vinyasa — grounded in neuroscience.</h1>
+          <p id="heroSub" class="mt-4 max-w-xl text-base" style="color: var(--muted);">Practice at home with free YouTube flows, follow on Instagram, and book paid live Zoom classes when you want structure and feedback.</p>
 
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#videos" class="rounded-xl px-4 py-2.5 text-sm font-semibold hover:opacity-90 focus-ring" style="background: var(--ink); color: white;">Watch videos</a>
+            <a href="#live" class="rounded-xl border bg-white px-4 py-2.5 text-sm font-semibold hover:bg-white/70 focus-ring" style="border-color: var(--border);">Join live Zoom</a>
+          </div>
+        </div>
+
+        <!-- Right: BIG profile image (same size as video) + latest uploads -->
+        <div class="space-y-6">
+          <!-- Profile image card (16:9, same size as video) -->
+          <div class="rounded-3xl border bg-white p-4" style="border-color: var(--border); box-shadow: var(--shadow);">
+            <p class="text-sm font-semibold">Myriam</p>
+            <p class="mt-1 text-sm" style="color: var(--muted);">Vinyasa • Clinical neuroscience</p>
+
+            <div class="mt-4 ratio overflow-hidden rounded-2xl border" style="border-color: var(--border);">
+              <img id="brandPhotoHero" class="object-cover" alt="Profile photo" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Latest uploads card -->
+          <div class="rounded-3xl border bg-white p-6" style="border-color: var(--border); box-shadow: var(--shadow);">
+            <p id="ytBlockTitle" class="text-sm font-semibold">Latest uploads</p>
+            <p class="mt-1 text-sm" style="color: var(--muted);">This playlist auto-updates from your channel.</p>
+
+            <div class="mt-4 ratio overflow-hidden rounded-2xl">
+              <iframe id="ytUploadsFrame" src="" title="YouTube uploads"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a id="ytChannelBtn" class="rounded-xl px-4 py-2.5 text-sm font-semibold hover:opacity-90 focus-ring"
+                style="background: var(--ink); color: white;" target="_blank" rel="noreferrer" href="#">Go to channel</a>
+              <button id="copyLink" class="rounded-xl border bg-white px-4 py-2.5 text-sm font-semibold hover:bg-white/70 focus-ring"
+                style="border-color: var(--border);" type="button">Copy site link</button>
+            </div>
+            <p id="copyMsg" class="mt-3 hidden text-xs" style="color: var(--muted);">Copied to clipboard.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Videos -->
+    <section id="videos" class="border-t" style="border-color: var(--border);">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Free YouTube videos</h2>
+            <p class="mt-2 max-w-2xl text-sm" style="color: var(--muted);">Always current (auto-updating uploads playlist).</p>
+          </div>
+          <a id="ytSubscribe" class="mt-4 inline-flex w-fit rounded-xl border bg-white px-4 py-2.5 text-sm font-semibold hover:bg-white/70 focus-ring md:mt-0"
+            style="border-color: var(--border);" target="_blank" rel="noreferrer" href="#">Subscribe</a>
+        </div>
+
+        <div class="mt-8 rounded-3xl border bg-white p-4" style="border-color: var(--border); box-shadow: var(--shadow);">
+          <div class="ratio overflow-hidden rounded-2xl">
+            <iframe id="ytUploadsFrame2" src="" title="YouTube uploads" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instagram -->
+    <section id="instagram" class="border-t" style="border-color: var(--border);">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Instagram highlights</h2>
+            <p class="mt-2 max-w-2xl text-sm" style="color: var(--muted);">Embedded highlights (edit which posts show in content.json).</p>
+          </div>
+          <a id="igOpen" class="mt-4 inline-flex w-fit rounded-xl px-4 py-2.5 text-sm font-semibold hover:opacity-90 focus-ring md:mt-0"
+            style="background: var(--ink); color: white;" target="_blank" rel="noreferrer" href="#">Open Instagram</a>
+        </div>
+        <div id="igGrid" class="mt-8 grid gap-6 md:grid-cols-3"></div>
+      </div>
+    </section>
+
+    <!-- Live Zoom -->
+    <section id="live" class="border-t" style="border-color: var(--border);">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <h2 class="text-2xl font-semibold tracking-tight">Live Zoom pricing</h2>
+        <p class="mt-2 max-w-2xl text-sm" style="color: var(--muted);">Payments are coming soon. For now, book via email.</p>
+
+        <div class="mt-8 rounded-3xl border bg-white p-6" style="border-color: var(--border); box-shadow: var(--shadow);">
+          <div id="pricingTabs" class="flex flex-wrap gap-2"></div>
+          <div class="mt-6">
+            <p id="pricingTitle" class="text-sm font-semibold"></p>
+            <p id="pricingPrice" class="mt-2 text-3xl font-semibold"></p>
+            <ul id="pricingBullets" class="mt-4 space-y-2 text-sm" style="color: var(--muted);"></ul>
+            <div id="pricingNote" class="mt-6 w-full text-center rounded-xl px-4 py-2.5 text-sm font-semibold" style="background:#E5E7EB;color:#374151"></div>
+          </div>
+        </div>
+
+        <p id="scheduleLine" class="mt-6 text-sm" style="color: var(--muted);"></p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="border-t" style="border-color: var(--border);">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div class="grid gap-10 md:grid-cols-2 md:items-start">
+          <div>
+            <h2 class="text-2xl font-semibold tracking-tight">About</h2>
+            <p id="aboutText" class="mt-3 text-sm" style="color: var(--muted);"></p>
+            <p id="aboutExample" class="mt-3 text-sm" style="color: var(--muted);"></p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a id="ytAboutBtn" class="rounded-xl border bg-white px-4 py-2.5 text-sm font-semibold hover:bg-white/70 focus-ring"
+                style="border-color: var(--border);" target="_blank" rel="noreferrer" href="#">YouTube</a>
+              <a id="igAboutBtn" class="rounded-xl border bg-white px-4 py-2.5 text-sm font-semibold hover:bg-white/70 focus-ring"
+                style="border-color: var(--border);" target="_blank" rel="noreferrer" href="#">Instagram</a>
+            </div>
+          </div>
+
+          <div class="rounded-3xl border bg-white p-6" style="border-color: var(--border); box-shadow: var(--shadow);">
+            <p class="text-sm font-semibold">For studios in Zürich</p>
+            <p id="studioNote" class="mt-2 text-sm" style="color: var(--muted);"></p>
+            <div class="mt-4 rounded-2xl border p-4" style="border-color: var(--border); background: rgba(220,235,255,.45);">
+              <p class="text-xs font-semibold" style="color: var(--muted);">One-line bio (copy/paste)</p>
+              <p id="oneLineBio" class="mt-2 text-sm"></p>
+              <button id="copyBio" class="mt-3 rounded-xl border bg-white px-3 py-2 text-sm font-semibold hover:bg-white/70 focus-ring"
+                style="border-color: var(--border);" type="button">Copy bio</button>
+              <p id="copyBioMsg" class="mt-3 hidden text-xs" style="color: var(--muted);">Copied.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="border-t" style="border-color: var(--border);">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <h2 class="text-2xl font-semibold tracking-tight">Contact</h2>
+        <p class="mt-2 max-w-2xl text-sm" style="color: var(--muted);">For booking, include: which class (Drop-in / 1:1 / 5er Pack) and your preferred date/time + timezone.</p>
+
+        <div class="mt-6 rounded-3xl border bg-white p-6" style="border-color: var(--border); box-shadow: var(--shadow);">
+          <p class="text-sm font-semibold">Email</p>
+          <p class="mt-2 text-sm" style="color: var(--muted);">Click to write an email.</p>
+          <a id="emailBtn" class="mt-4 inline-flex w-fit rounded-xl px-4 py-2.5 text-sm font-semibold hover:opacity-90 focus-ring"
+            style="background: var(--ink); color: white;" href="#">email</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t" style="border-color: var(--border);">
+      <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-xs md:flex-row md:items-center md:justify-between" style="color: var(--muted);">
+        <p>© <span id="year"></span> <span id="brandNameFooter">Body &amp; Brain by Myriam</span></p>
+        <div class="flex gap-4">
+          <a id="youtubeFooter" class="hover:text-slate-900" target="_blank" rel="noreferrer" href="#">YouTube</a>
+          <a id="instagramFooter" class="hover:text-slate-900" target="_blank" rel="noreferrer" href="#">Instagram</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script async src="https://www.instagram.com/embed.js"></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const copyBtn = document.getElementById('copyLink');
+    const copyMsg = document.getElementById('copyMsg');
+    copyBtn?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        copyMsg.classList.remove('hidden');
+        setTimeout(() => copyMsg.classList.add('hidden'), 1500);
+      } catch (e) {
+        alert('Copy failed. You can manually copy the URL from your browser.');
+      }
+    });
+
+    function safeText(el, value){ if(el && typeof value === 'string') el.textContent = value; }
+    function safeHref(el, value){ if(el && typeof value === 'string') el.href = value; }
+
+    function buildUploadsPlaylist(channelId){
+      if(!channelId || channelId.length < 3) return '';
+      const suffix = channelId.startsWith('UC') ? channelId.slice(2) : channelId;
+      return `https://www.youtube.com/embed/videoseries?list=UU${suffix}`;
+    }
+
+    function renderInstagramEmbeds(urls){
+      const grid = document.getElementById('igGrid');
+      if(!grid) return;
+      grid.innerHTML = '';
+
+      (urls || []).slice(0, 6).forEach((u) => {
+        const card = document.createElement('div');
+        card.className = 'rounded-3xl border bg-white p-4';
+        card.style.borderColor = 'var(--border)';
+        card.style.boxShadow = 'var(--shadow)';
+        card.innerHTML = `
+          <blockquote class="instagram-media" data-instgrm-permalink="${u}" data-instgrm-version="14" style="background:#FFF; border:0; margin:0; padding:0; width:100%;"></blockquote>
+        `;
+        grid.appendChild(card);
+      });
+
+      const process = () => window.instgrm?.Embeds?.process?.();
+      process();
+      setTimeout(process, 500);
+      setTimeout(process, 1500);
+    }
+
+    function formatMultiCurrencyPrice(currencies, amount){
+      const list = (currencies || ['CHF','EUR','USD']).map(c => `${c} ${amount}`);
+      return list.join(' / ');
+    }
+
+    function renderPricingTabs(offerings){
+      const tabsEl = document.getElementById('pricingTabs');
+      const titleEl = document.getElementById('pricingTitle');
+      const priceEl = document.getElementById('pricingPrice');
+      const bulletsEl = document.getElementById('pricingBullets');
+      const noteEl = document.getElementById('pricingNote');
+
+      if(!tabsEl || !titleEl || !priceEl || !bulletsEl || !noteEl) return;
+
+      const currencies = offerings?.currencies || ['CHF','EUR','USD'];
+      const items = offerings?.items || [];
+      if(items.length === 0) return;
+
+      let activeIndex = 0;
+
+      const renderActive = () => {
+        const item = items[activeIndex];
+        titleEl.textContent = item.title || '';
+        priceEl.textContent = formatMultiCurrencyPrice(currencies, item.price);
+        bulletsEl.innerHTML = (item.bullets || []).map(b => `<li>• ${b}</li>`).join('');
+        noteEl.textContent = item.note || 'Payment coming soon';
+
+        [...tabsEl.querySelectorAll('button[data-idx]')].forEach(btn => {
+          const idx = Number(btn.getAttribute('data-idx'));
+          const isActive = idx === activeIndex;
+          btn.style.background = isActive ? 'var(--ink)' : 'white';
+          btn.style.color = isActive ? 'white' : 'var(--ink)';
+          btn.style.borderColor = 'var(--border)';
+        });
+      };
+
+      tabsEl.innerHTML = '';
+      items.slice(0,3).forEach((item, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'focus-ring rounded-xl border px-3 py-2 text-sm font-semibold hover:bg-white/70';
+        btn.setAttribute('data-idx', String(idx));
+        btn.style.borderColor = 'var(--border)';
+        btn.textContent = item.title || `Option ${idx+1}`;
+        btn.addEventListener('click', () => { activeIndex = idx; renderActive(); });
+        tabsEl.appendChild(btn);
+      });
+
+      renderActive();
+      safeText(document.getElementById('scheduleLine'), offerings?.scheduleLine || '');
+    }
+
+    async function loadContent(){
+      const res = await fetch('./content.json', { cache: 'no-store' });
+      if(!res.ok) throw new Error('content.json not found');
+      return await res.json();
+    }
+
+    (async () => {
+      const content = await loadContent();
+
+      const brand = content.brand || {};
+      const copy = content.copy || {};
+
+      safeText(document.getElementById('brandNameTop'), brand.name || 'Body & Brain by Myriam');
+      safeText(document.getElementById('brandNameFooter'), brand.name || 'Body & Brain by Myriam');
+
+      // BIG hero profile image (same 16:9 size as video)
+      const photoEl = document.getElementById('brandPhotoHero');
+      if(photoEl && brand.photo){
+        photoEl.src = brand.photo;
+        photoEl.onerror = () => { photoEl.style.display = 'none'; };
+      }
+
+      safeHref(document.getElementById('youtubeTop'), brand.youtubeUrl);
+      safeHref(document.getElementById('ytChannelBtn'), brand.youtubeUrl);
+      safeHref(document.getElementById('ytSubscribe'), brand.youtubeUrl);
+      safeHref(document.getElementById('ytAboutBtn'), brand.youtubeUrl);
+      safeHref(document.getElementById('youtubeFooter'), brand.youtubeUrl);
+
+      safeHref(document.getElementById('instagramTop'), brand.instagramUrl);
+      safeHref(document.getElementById('igOpen'), brand.instagramUrl);
+      safeHref(document.getElementById('igAboutBtn'), brand.instagramUrl);
+      safeHref(document.getElementById('instagramFooter'), brand.instagramUrl);
+
+      safeText(document.getElementById('heroHeadline'), copy.heroHeadline);
+      safeText(document.getElementById('heroSub'), copy.heroSub);
+      safeText(document.getElementById('aboutText'), copy.about);
+      safeText(document.getElementById('aboutExample'), copy.aboutExample);
+      safeText(document.getElementById('studioNote'), copy.studioNote);
+      safeText(document.getElementById('oneLineBio'), copy.oneLineBio);
+
+      const channelId = content.youtube?.channelId;
+      const uploadsSrc = buildUploadsPlaylist(channelId);
+      if(uploadsSrc){
+        document.getElementById('ytUploadsFrame').src = uploadsSrc;
+        document.getElementById('ytUploadsFrame2').src = uploadsSrc;
+      }
+      safeText(document.getElementById('ytBlockTitle'), content.youtube?.featuredPlaylistTitle || 'Latest uploads');
+
+      renderInstagramEmbeds(content.instagram?.highlights || []);
+      renderPricingTabs(content.offerings || {});
+
+      const email = brand.email || '';
+      const emailBtn = document.getElementById('emailBtn');
+      if(emailBtn && email){
+        const subject = encodeURIComponent('Yoga class booking (Body & Brain)');
+        const bodyText = `Hi Myriam,\n\nI would like to book: (Zoom Drop-in / 1:1 Zoom / 5er Pack Zoom)\nPreferred date/time:\nTimezone:\nExperience level:\nAnything to know (injuries, goals):\n\nThanks,`;
+        const body = encodeURIComponent(bodyText);
+        emailBtn.textContent = email;
+        emailBtn.href = `mailto:${email}?subject=${subject}&body=${body}`;
+      }
+
+      const copyBioBtn = document.getElementById('copyBio');
+      const copyBioMsg = document.getElementById('copyBioMsg');
+      copyBioBtn?.addEventListener('click', async () => {
+        const bio = copy.oneLineBio || '';
+        try {
+          await navigator.clipboard.writeText(bio);
+          copyBioMsg.classList.remove('hidden');
+          setTimeout(() => copyBioMsg.classList.add('hidden'), 1500);
+        } catch (e) {
+          alert('Copy failed.');
+        }
+      });
+    })().catch(console.error);
+  </script>
 </body>
 </html>
