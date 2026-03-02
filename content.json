@@ -1,0 +1,55 @@
+{
+  "brand": {
+    "name": "Body & Brain by Myriam",
+    "location": "Zürich",
+    "email": "myriamtaga@msn.com",
+    "youtubeUrl": "https://www.youtube.com/@bodyandbrainbymyriam",
+    "instagramUrl": "https://www.instagram.com/bodyandbrainbymyriam/"
+  },
+  "copy": {
+    "heroHeadline": "Simple, effective vinyasa — grounded in neuroscience.",
+    "heroSub": "Practice at home with free YouTube flows, follow on Instagram, and book paid live Zoom classes when you want structure and feedback.",
+    "about": "I’m Myriam — a vinyasa yoga teacher with a PhD in clinical and cognitive neuroscience. I create classes that feel good in the body and support calm, focus, and recovery.",
+    "aboutExample": "Example: if you’re stressed after work, we’ll use longer exhales and slower transitions. If you feel low-energy, we’ll build heat safely with clear progressions.",
+    "studioNote": "Available for substitutes / cover classes and community offerings in Zürich. Vinyasa-focused, clear cueing, adaptable sequencing.",
+    "oneLineBio": "Myriam teaches creative vinyasa yoga and brings a clinical neuroscience background to clear, supportive classes."
+  },
+  "youtube": {
+    "channelId": "UCo0Gb087XUrl__kHQjeXyiw",
+    "featuredPlaylistTitle": "Latest uploads"
+  },
+  "instagram": {
+    "highlights": [
+      "https://www.instagram.com/p/DTz_jUvjIZm/",
+      "https://www.instagram.com/p/DT2NgiejOdN/",
+      "https://www.instagram.com/reel/DPtmpqGjEB3/"
+    ]
+  },
+  "offerings": {
+    "currencies": ["CHF", "EUR", "USD"],
+    "items": [
+      {
+        "id": "dropin",
+        "title": "Zoom Drop-in",
+        "price": 15,
+        "bullets": ["60 min live class", "Modifications + options", "Replay for 48h"],
+        "note": "Payment coming soon — book via email for now."
+      },
+      {
+        "id": "oneonone",
+        "title": "1:1 Zoom",
+        "price": 50,
+        "bullets": ["60 min tailored practice", "Goal-based plan", "Follow-up notes"],
+        "note": "Payment coming soon — book via email for now."
+      },
+      {
+        "id": "pack5",
+        "title": "5er Pack Zoom",
+        "price": 50,
+        "bullets": ["5 live classes", "Valid 2 months", "Priority Q&A"],
+        "note": "Payment coming soon — book via email for now."
+      }
+    ],
+    "scheduleLine": "Live Zoom sessions are open worldwide. In-person classes are only in Zürich."
+  }
+}
