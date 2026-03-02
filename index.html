@@ -347,6 +347,9 @@
       const copy = content.copy || {};
 
       safeText(document.getElementById('brandNameTop'), brand.name || 'Body & Brain by Myriam');
+      if (brand.photo) {
+  document.getElementById('brandPhoto').src = brand.photo;
+}
       safeText(document.getElementById('brandNameFooter'), brand.name || 'Body & Brain by Myriam');
 
       safeHref(document.getElementById('youtubeTop'), brand.youtubeUrl);
